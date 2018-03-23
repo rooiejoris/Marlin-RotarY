@@ -688,10 +688,10 @@
  *      O-- FRONT --+
  *    (0,0)
  */
-joris
+//joris
 #define X_PROBE_OFFSET_FROM_EXTRUDER 0  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER 10.1   // Z offset: -below +above  [the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER 5  // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -5   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -721,12 +721,13 @@ joris
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
+//joris
+#define Z_CLEARANCE_DEPLOY_PROBE   20 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_BETWEEN_PROBES  15 // Z Clearance between probe points
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -20
-#define Z_PROBE_OFFSET_RANGE_MAX 20
+#define Z_PROBE_OFFSET_RANGE_MIN -50
+#define Z_PROBE_OFFSET_RANGE_MAX 50
 
 // Enable the M48 repeatability test to test probe accuracy
 //#define Z_MIN_PROBE_REPEATABILITY_TEST
@@ -756,7 +757,7 @@ joris
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 //joris
 #define INVERT_X_DIR true
-#define INVERT_Y_DIR false
+#define INVERT_Y_DIR true //for RotarY
 #define INVERT_Z_DIR true
 
 // Enable this option for Toshiba stepper drivers
@@ -924,8 +925,9 @@ joris
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
-  #define LEFT_PROBE_BED_POSITION 15
-  #define RIGHT_PROBE_BED_POSITION 170
+//joris
+  #define LEFT_PROBE_BED_POSITION 50
+  #define RIGHT_PROBE_BED_POSITION 118
   #define FRONT_PROBE_BED_POSITION 20
   #define BACK_PROBE_BED_POSITION 170
 
