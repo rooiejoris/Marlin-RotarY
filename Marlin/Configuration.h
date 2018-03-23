@@ -474,9 +474,9 @@
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-//#define USE_XMAX_PLUG
-//#define USE_YMAX_PLUG
-//#define USE_ZMAX_PLUG
+#define USE_XMAX_PLUG
+#define USE_YMAX_PLUG
+#define USE_ZMAX_PLUG
 
 // coarse Endstop Settings
 #define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
@@ -493,13 +493,14 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
+//joris
+#define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define X_MAX_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Y_MAX_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MAX_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING true // set to true to invert the logic of the probe.
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
@@ -589,6 +590,7 @@
  *
  * Enable this option for a probe connected to the Z Min endstop pin.
  */
+//joris
 #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 /**
@@ -610,8 +612,7 @@
  * disastrous consequences. Use with caution and do your homework.
  *
  */
-//joris
-#define Z_MIN_PROBE_ENDSTOP
+//#define Z_MIN_PROBE_ENDSTOP
 
 /**
  * Probe Type
@@ -700,7 +701,8 @@
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
 
 // Speed for the "accurate" probe of each point
-#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)
+//#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)
+#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST)
 
 // The number of probes to perform at each point.
 //   Set to 2 for a fast/slow probe, using the second probe result.
@@ -722,8 +724,8 @@
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
 //joris
-#define Z_CLEARANCE_DEPLOY_PROBE   20 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  15 // Z Clearance between probe points
+#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_BETWEEN_PROBES  10 // Z Clearance between probe points
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -50
@@ -788,14 +790,18 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 205
+//joris
+#define X_BED_SIZE 68
 #define Y_BED_SIZE 205
+//#define X_BED_SIZE 205
+//#define Y_BED_SIZE 205
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
+//#define X_MAX_POS X_BED_SIZE
+#define X_MAX_POS 118
 #define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 200
 
@@ -932,7 +938,7 @@
   #define BACK_PROBE_BED_POSITION 170
 
   // The Z probe minimum outer margin (to validate G29 parameters).
-  #define MIN_PROBE_EDGE 10
+  #define MIN_PROBE_EDGE 0
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
@@ -978,11 +984,12 @@
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
-  #define UBL_PROBE_PT_1_X 39       // Probing points for 3-Point leveling of the mesh
+//joris
+  #define UBL_PROBE_PT_1_X 3       // Probing points for 3-Point leveling of the mesh
   #define UBL_PROBE_PT_1_Y 180
-  #define UBL_PROBE_PT_2_X 39
+  #define UBL_PROBE_PT_2_X 3
   #define UBL_PROBE_PT_2_Y 20
-  #define UBL_PROBE_PT_3_X 180
+  #define UBL_PROBE_PT_3_X 65
   #define UBL_PROBE_PT_3_Y 20
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
@@ -994,7 +1001,8 @@
   //=================================== Mesh ==================================
   //===========================================================================
 
-  #define MESH_INSET 10          // Mesh inset margin on print area
+//joris
+  #define MESH_INSET 1          // Mesh inset margin on print area
   #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -1043,16 +1051,20 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+//joris
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
-  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
+  #define Z_SAFE_HOMING_Y_POINT 5    // Y point for Z homing when homing all axes (G28).
+//  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
 #endif
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+//joris
+//#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_Z  (10*60)
 
 // @section calibrate
 
@@ -1125,7 +1137,8 @@
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //
-//#define EEPROM_SETTINGS // Enable for M500 and M501 commands
+// joris
+#define EEPROM_SETTINGS // Enable for M500 and M501 commands
 //#define DISABLE_M503    // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT   // Give feedback on EEPROM commands. Disable to save PROGMEM.
 
@@ -1341,7 +1354,8 @@
  * you must uncomment the following option or it won't work.
  *
  */
-//#define SDSUPPORT
+//joris
+#define SDSUPPORT
 
 /**
  * SD CARD: SPI SPEED
