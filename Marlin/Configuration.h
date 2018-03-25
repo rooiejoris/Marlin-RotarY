@@ -815,7 +815,7 @@
 
 // The size of the print bed
 //joris
-// pvc tubing first tests
+// pvc tuding first tests
 //#define X_BED_SIZE 68
 //egg size
 //#define X_BED_SIZE 35
@@ -835,8 +835,7 @@
 //#define X_MAX_POS 118
 //egg
 #define X_MAX_POS 40
-#define Y_MAX_POS 200
-//#define Y_MAX_POS Y_BED_SIZE
+#define Y_MAX_POS 205 // Y_BED_SIZE
 //joris set this to unlimited for continues printing
 #define Z_MAX_POS 100
 
@@ -1014,9 +1013,9 @@
   #define PROBE_PT_1_X 39
   #define PROBE_PT_1_Y 170
   #define PROBE_PT_2_X 39
-  #define PROBE_PT_2_Y 3
+  #define PROBE_PT_2_Y 10
   #define PROBE_PT_3_X 170
-  #define PROBE_PT_3_Y 3
+  #define PROBE_PT_3_Y 10
 
 #elif ENABLED(AUTO_BED_LEVELING_UBL)
 
@@ -1119,7 +1118,7 @@
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
-  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
+  #define Z_SAFE_HOMING_Y_POINT 5    // Y point for Z homing when homing all axes (G28).
 //  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
 #endif
 
