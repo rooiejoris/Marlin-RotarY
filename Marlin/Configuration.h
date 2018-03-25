@@ -532,7 +532,16 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
 //joris
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.7402,78.7402,200.0*8/3,760*1.1 }
+//150 teeth / 16 teeth
+//--> 9,375 rounds is a full turn = 200 mm
+//200 * 8 steps / revolution
+
+//9,357 * 200 * 8 / 200
+//strange 75 doesn't seem to work, now set emperical to 125
+
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.7402,125,200.0*8/3,760*1.1 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.7402,75,200.0*8/3,760*1.1 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.7402,78.7402,200.0*8/3,760*1.1 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -540,7 +549,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
 //joris
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 500, 500, 15, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -690,8 +699,8 @@
  *    (0,0)
  */
 //joris
-#define X_PROBE_OFFSET_FROM_EXTRUDER 0  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER 5  // Y offset: -front +behind [the nozzle]
+#define X_PROBE_OFFSET_FROM_EXTRUDER -5  // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER 0  // Y offset: -front +behind [the nozzle]
 #define Z_PROBE_OFFSET_FROM_EXTRUDER -5   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
@@ -725,7 +734,7 @@
  */
 //joris
 #define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  10 // Z Clearance between probe points
+#define Z_CLEARANCE_BETWEEN_PROBES  8 // Z Clearance between probe points
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -50
@@ -791,8 +800,11 @@
 
 // The size of the print bed
 //joris
-#define X_BED_SIZE 68
-#define Y_BED_SIZE 205
+// pvc tuding first tests
+//#define X_BED_SIZE 68
+//egg size
+#define X_BED_SIZE 35
+#define Y_BED_SIZE 200
 //#define X_BED_SIZE 205
 //#define Y_BED_SIZE 205
 
@@ -801,9 +813,13 @@
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 //#define X_MAX_POS X_BED_SIZE
-#define X_MAX_POS 118
+//ovc first test
+//#define X_MAX_POS 118
+//egg
+#define X_MAX_POS 40
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+//joris set this to unlimited for continues printing
+#define Z_MAX_POS 100
 
 /**
  * Software Endstops
@@ -908,7 +924,9 @@
   // split up moves into short segments like a Delta. This follows the
   // contours of the bed more closely than edge-to-edge straight moves.
   #define SEGMENT_LEVELED_MOVES
-  #define LEVELED_SEGMENT_LENGTH 5.0 // (mm) Length of all segments (except the last one)
+//joris
+  #define LEVELED_SEGMENT_LENGTH 0.5 // (mm) Length of all segments (except the last one)
+//  #define LEVELED_SEGMENT_LENGTH 5 // (mm) Length of all segments (except the last one)
 
   /**
    * Enable the G26 Mesh Validation Pattern tool.
@@ -927,8 +945,10 @@
 #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
-  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+  #define GRID_MAX_POINTS_X 10
+  #define GRID_MAX_POINTS_Y 10
+  //#define GRID_MAX_POINTS_X 3
+  //#define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
 //joris
@@ -953,7 +973,8 @@
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    //#define ABL_BILINEAR_SUBDIVISION
+//joris eerst niet aangezet..?!
+    #define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
       #define BILINEAR_SUBDIVISIONS 3
@@ -980,17 +1001,20 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
+  //joris
   #define MESH_INSET 1              // Mesh inset margin on print area
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+//  #define GRID_MAX_POINTS_X 5      // Don't use more than 15 points per axis, implementation limited.
+//  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 //joris
   #define UBL_PROBE_PT_1_X 3       // Probing points for 3-Point leveling of the mesh
-  #define UBL_PROBE_PT_1_Y 180
+  #define UBL_PROBE_PT_1_Y 190
   #define UBL_PROBE_PT_2_X 3
-  #define UBL_PROBE_PT_2_Y 20
-  #define UBL_PROBE_PT_3_X 65
-  #define UBL_PROBE_PT_3_Y 20
+  #define UBL_PROBE_PT_2_Y 10
+  #define UBL_PROBE_PT_3_X 33
+  #define UBL_PROBE_PT_3_Y 10
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
   #define UBL_SAVE_ACTIVE_ON_M500   // Save the currently active mesh in the current slot on M500
@@ -1003,8 +1027,10 @@
 
 //joris
   #define MESH_INSET 1          // Mesh inset margin on print area
-  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_X 7    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+//  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
+//  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
 
@@ -1064,7 +1090,7 @@
 #define HOMING_FEEDRATE_XY (50*60)
 //joris
 //#define HOMING_FEEDRATE_Z  (4*60)
-#define HOMING_FEEDRATE_Z  (10*60)
+#define HOMING_FEEDRATE_Z  (15*60)
 
 // @section calibrate
 
