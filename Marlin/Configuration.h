@@ -1001,10 +1001,15 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  //joris
+  //joris, use this for UBL [which is what we are using...]
   #define MESH_INSET 1              // Mesh inset margin on print area
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
-  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+  #define GRID_MAX_POINTS_Y 15
+
+// tried this, but weird Z movements
+//  #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
+//  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+
 //  #define GRID_MAX_POINTS_X 5      // Don't use more than 15 points per axis, implementation limited.
 //  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
