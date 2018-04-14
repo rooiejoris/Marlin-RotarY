@@ -716,7 +716,7 @@
 //joris
 #define X_PROBE_OFFSET_FROM_EXTRUDER -5  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 0  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -5   // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -8   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -823,19 +823,43 @@
 //#define X_BED_SIZE 205
 //#define Y_BED_SIZE 205
 
-#define X_BED_SIZE (X_MAX_POS-X_MIN_POS)   // Altered from original configuration.h file
-#define Y_BED_SIZE (Y_MAX_POS-Y_MIN_POS)
+//egg 20180407
+//#define X_BED_SIZE 40
+//#define Y_BED_SIZE 200
+
+#define X_BED_SIZE 205
+#define Y_BED_SIZE 200
+
+
+//#define X_BED_SIZE (X_MAX_POS-X_MIN_POS)   // Altered from original configuration.h file
+//#define Y_BED_SIZE (Y_MAX_POS-Y_MIN_POS)
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
+//joris
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
+
+//joris egg 20180407
+//#define X_MIN_POS -50
+//#define Y_MIN_POS 0
+
+//#define X_MIN_POS 0
+//#define Y_MIN_POS 0
 #define Z_MIN_POS 0
 //#define X_MAX_POS X_BED_SIZE
 //ovc first test
 //#define X_MAX_POS 118
+
 //egg
-#define X_MAX_POS 40
-#define Y_MAX_POS 205 // Y_BED_SIZE
+//#define X_MAX_POS 40
+
+//egg
+#define X_MAX_POS 205
+#define Y_MAX_POS 200 // Y_BED_SIZE
+
+//egg 20180407
+//#define X_MAX_POS 140
+//#define Y_MAX_POS 205 // Y_BED_SIZE
 //joris set this to unlimited for continues printing
 #define Z_MAX_POS 100
 
@@ -970,7 +994,9 @@
 
   // Set the number of grid points per dimension.
   #define GRID_MAX_POINTS_X 10
-  #define GRID_MAX_POINTS_Y 10
+  // egg 20140407
+  #define GRID_MAX_POINTS_Y 6
+  //#define GRID_MAX_POINTS_Y 10
   //#define GRID_MAX_POINTS_X 3
   //#define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -1027,8 +1053,12 @@
 
   //joris, use this for UBL [which is what we are using...]
   #define MESH_INSET 1              // Mesh inset margin on print area
+  // egg 20140407
   #define GRID_MAX_POINTS_X 8      // Don't use more than 15 points per axis, implementation limited.
-  #define GRID_MAX_POINTS_Y 12
+  #define GRID_MAX_POINTS_Y 6
+
+  //#define GRID_MAX_POINTS_X 8      // Don't use more than 15 points per axis, implementation limited.
+  //#define GRID_MAX_POINTS_Y 12
 
 // tried this, but weird Z movements
 //  #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
